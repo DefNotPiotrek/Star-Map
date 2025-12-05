@@ -4,6 +4,10 @@
 
 ---
 
+<img width="1020" height="589" alt="image" src="https://github.com/user-attachments/assets/f796b9d8-3c9d-4888-8fb1-79449a8e8b22" />
+
+---
+
 ## ✨ Key Features
 
 * **Full Catalog:** Displays all 88 official IAU (International Astronomical Union) constellations.
