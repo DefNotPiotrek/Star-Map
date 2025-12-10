@@ -23,7 +23,6 @@ void Constellations::setNames(){
 }
 
 void Constellations::makeConstellations(){
-	blankConstellation.buildDefaultConstellation();
 	constellationsArray.resize(88);
 	// 0. Andromeda (Alpheratz)
 	constellationsArray[0].setInformationsAboutConstellation("Andromeda", 0, 6, "Alpheratz", 0, 8, 29);
@@ -201,7 +200,11 @@ void Constellations::makeConstellations(){
 	constellationsArray[86].setInformationsAboutConstellation("Volans", 17, 15, "Beta Vol", 8, 25, -66);
 	// 87. Vulpecula - Lisek (Anser)
 	constellationsArray[87].setInformationsAboutConstellation("Vulpecula", 38, 6, "Anser", 19, 28, 24);
-	vector<Constellation> constellationsArray(size, blankConstellation);
+	
+	for(int i = 0; i < constellationsArray.size(); i++){
+		constellationsArray[i].buildDefaultConstellation();
+		constellationsArray[i].buildConstellation();
+	}
 }
 
 void Constellations::setStarMap(){
@@ -219,6 +222,13 @@ void Constellations::setStarMap(){
 
 void Constellations::showStarMap(){
 	clear();
+
+	for(int i = 0; i < constellationsArray.size(); i++){
+		if(showedConstellation == constellationsArray[i].getName()){
+			constellationsArray[i].showConstellation();
+			return;
+		}
+	}
 
 	for(int i = 0; i < Constellations::starMapRow * 2; i++){
 		if(i%2 == 0){
@@ -239,6 +249,14 @@ void Constellations::showStarMap(){
 }
 
 void Constellations::showBorder(){
+
+	for(int i = 0; i < constellationsArray.size(); i++){
+		if(showedConstellation == constellationsArray[i].getName()){
+			constellationsArray[i].showBorder();
+			return;
+		}
+	}
+
 	for(int i = 0; i < Constellations::starMapRow*2+3; i++){
 		for(int j = 0; j < Constellations::starMapCol*2+3; j++){
 			if(j == 0 || j == starMapCol*2+2) mvaddch(i, j, '|');
@@ -278,6 +296,7 @@ void Constellations::controlPointer(int ch){
 	mvaddch(pointerY * 2 + 1, pointerX * 2, '|');
 	mvaddch(pointerY * 2 - 1, pointerX * 2, '|');
 
+	if(showedConstellation != "") return;
 	for(int i = 0; i < constellationsArray.size(); i++){
 		int x = constellationsArray[i].getX();
 		int y = constellationsArray[i].getY();
@@ -292,16 +311,8 @@ void Constellations::controlPointer(int ch){
 				mvprintw(4, Constellations::starMapCol*2 + 4, "Declinacion: %i°", constellationsArray[i].getDec());
 			mvprintw(6, Constellations::starMapCol*2 + 4, "RA: %iʰ %iᵐ", constellationsArray[i].getRAh(), constellationsArray[i].getRAm());
 
-			if(ch == KEY_ENTER){
-				constellationsArray[i].show = !constellationsArray[i].show;
-				int ch = ' ';
-				while(constellationsArray[i].show){
-					ch = getch();
-					constellationsArray[i].showConstellation();
-					constellationsArray[i].showBorder();
-					if(ch == 'q') break;
-					napms(25);
-				}
+			if(ch == 'c'){
+				showedConstellation = constellationsArray[i].getName();
 			}
 		}
 	}

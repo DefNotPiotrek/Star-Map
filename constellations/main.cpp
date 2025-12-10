@@ -24,7 +24,12 @@ int main(){
 		constellations.showStarMap();
 		constellations.showBorder();
 		constellations.controlPointer(ch);
-		if(ch == 'q') break;
+		if(ch == 'q'){
+			if(constellations.showedConstellation == "") 
+				break;
+			else
+				constellations.showedConstellation = "";
+		}
 		napms(25);
 	}
 	endwin();

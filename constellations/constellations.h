@@ -7,6 +7,7 @@ class Constellations{
 public:
 	const int size = 88, starMapRow = 18, starMapCol = 48, starMapMod = 1;
 	int pointerX = 1, pointerY = 1;
+	string showedConstellation = "";
 	vector<Constellation> constellationsArray;
 	Constellation blankConstellation;
 	vector<string> names;

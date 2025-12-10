@@ -5,26 +5,44 @@
 
 void Constellation::buildDefaultConstellation(){
 	row = 20, col = 50, constellationMod = 1, show = true;;
-	constellation.resize(row, vector<char>(col, ' '));
 }
 
 void Constellation::buildConstellation(){
+	constellation.assign(row, vector<char>(col, ' '));
+
 	//Orion y-19 x-30
-	if(name == "Orion"){
+	if(Constellation::name == "Orion"){
 		setStar(10, 22, '*'); // Alnitak
-    		setStar(10, 25, '*'); // Alnilam (KOTWICA - środek mapy)
-    		setStar(10, 28, '*'); // Mintaka
+		setStar(10, 25, '*'); // Alnilam (KOTWICA - środek mapy)
+    		setStar(10, 27, '*'); // Mintaka
+
 
 	    	// Ramiona (góra)
-	    	setStar(6, 20, '@');  // Betelgeza (czerwony olbrzym - jasna!)
-	    	setStar(5, 30, '*');  // Bellatrix
+	    	setStar(5, 19, '@');  // Betelgeza (czerwony olbrzym - jasna!)
+	    	setStar(6, 30, '*');  // Bellatrix
+		setStar(4, 24, '*'); 
+
+		// Bow
+		setStar(3, 36, '.');
+		setStar(4, 37, '.');
+		setStar(5, 38, '*');
+		setStar(6, 38, '.');
+		setStar(8, 37, '.');
+
+		//arm
+		setStar(3, 17, '*');
+	  	setStar(2, 16, '.');
+		setStar(2, 15, '.');
+		setStar(0, 17, ',');
+		setStar(0, 18, '.');
 
 	    	// Nogi (dół)
-	    	setStar(15, 20, '*'); // Saiph
+	    	setStar(15, 21, '*'); // Saiph
 	    	setStar(14, 32, '@'); // Rigel (super jasna!)
 	    	// Miecz (poniżej pasa)
-	    	setStar(11, 24, '.');
-	    	setStar(12, 23, '.');
+	    	setStar(12, 25, '.');
+	    	setStar(13, 25, '.');
+		setStar(14, 24, '.');
 	}
 }
 
